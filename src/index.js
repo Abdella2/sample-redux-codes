@@ -1,5 +1,6 @@
 // import showMessage from '../function-composition';
 import showMessage from '../curring';
+require('../update-object');
 
 function component() {
   const element = document.createElement('div');
