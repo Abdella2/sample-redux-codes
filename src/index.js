@@ -1,4 +1,5 @@
-import showMessage from '../function-composition';
+// import showMessage from '../function-composition';
+import showMessage from '../curring';
 
 function component() {
   const element = document.createElement('div');
