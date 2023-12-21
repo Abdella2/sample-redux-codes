@@ -17,6 +17,12 @@ export default function reducer(state = [], action) {
       ];
     case actions.REMOVE_ARTICLE:
       return state.filter((article) => article.id !== action.payload.id);
+    case actions.PUBLISH_ARTICLE:
+      return state.map((article) =>
+        article.id === action.payload.id
+          ? { ...article, isPublished: true }
+          : article
+      );
     default:
       return state;
   }

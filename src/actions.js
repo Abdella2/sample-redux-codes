@@ -11,3 +11,10 @@ export const removeArticle = (id) => ({
     id
   }
 });
+
+export const publishArticle = (id) => ({
+  type: actions.PUBLISH_ARTICLE,
+  payload: {
+    id
+  }
+});

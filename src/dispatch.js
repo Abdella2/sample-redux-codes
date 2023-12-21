@@ -1,4 +1,4 @@
-import { addArticle, removeArticle } from './actions';
+import { addArticle, publishArticle } from './actions';
 import store from './store';
 
 const unsubscribe = store.subscribe(() =>
@@ -12,8 +12,17 @@ store.dispatch(
   })
 );
 
+store.dispatch(
+  addArticle({
+    title: 'Artificial intelligent',
+    authors: ['John', 'Sara']
+  })
+);
+
+store.dispatch(publishArticle(1));
+
 unsubscribe();
 
-store.dispatch(removeArticle(1));
+// store.dispatch(removeArticle(1));
 
 console.log(store.getState());
