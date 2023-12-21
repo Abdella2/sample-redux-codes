@@ -1,8 +1,8 @@
 // import showMessage from '../function-composition';
-import showMessage from '../curring';
+import showMessage from '../functional/curring';
 // require('../update-object');
 // require('../immutable');
-require('../immer');
+require('../functional/immer');
 
 function component() {
   const element = document.createElement('div');
