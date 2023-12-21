@@ -1,5 +1,9 @@
 import store from './store';
 
+const unsubscribe = store.subscribe(() =>
+  console.log('Store changed!', store.getState())
+);
+
 store.dispatch({
   type: 'ADD_ARTICLE',
   payload: {
@@ -7,7 +11,7 @@ store.dispatch({
     authors: ['John', 'Sara']
   }
 });
-
+unsubscribe();
 store.dispatch({
   type: 'REMOVE_ARTICLE',
   payload: {
