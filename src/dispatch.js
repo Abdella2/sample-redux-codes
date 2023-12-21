@@ -1,23 +1,19 @@
-import * as actions from './action-types';
+import { addArticle, removeArticle } from './actions';
 import store from './store';
 
 const unsubscribe = store.subscribe(() =>
   console.log('Store changed!', store.getState())
 );
 
-store.dispatch({
-  type: actions.ADD_ARTICLE,
-  payload: {
+store.dispatch(
+  addArticle({
     title: 'Machine learning',
     authors: ['John', 'Sara']
-  }
-});
+  })
+);
+
 unsubscribe();
-store.dispatch({
-  type: actions.REMOVE_ARTICLE,
-  payload: {
-    id: 1
-  }
-});
+
+store.dispatch(removeArticle(1));
 
 console.log(store.getState());

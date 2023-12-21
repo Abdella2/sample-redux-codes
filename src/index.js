@@ -3,7 +3,7 @@
 // require('../update-object');
 // require('../immutable');
 // require('../functional/immer');
-require('./action');
+require('./dispatch');
 
 function component() {
   const element = document.createElement('div');
