@@ -1,8 +1,10 @@
+import * as actions from './action-types';
+
 let lastId = 0;
 
 export default function reducer(state = [], action) {
   switch (action.type) {
-    case 'ADD_ARTICLE':
+    case actions.ADD_ARTICLE:
       return [
         ...state,
         {
@@ -13,7 +15,7 @@ export default function reducer(state = [], action) {
           isPublished: false
         }
       ];
-    case 'REMOVE_ARTICLE':
+    case actions.REMOVE_ARTICLE:
       return state.filter((article) => article.id !== action.payload.id);
     default:
       return state;

@@ -1,3 +1,4 @@
+import * as actions from './action-types';
 import store from './store';
 
 const unsubscribe = store.subscribe(() =>
@@ -5,7 +6,7 @@ const unsubscribe = store.subscribe(() =>
 );
 
 store.dispatch({
-  type: 'ADD_ARTICLE',
+  type: actions.ADD_ARTICLE,
   payload: {
     title: 'Machine learning',
     authors: ['John', 'Sara']
@@ -13,7 +14,7 @@ store.dispatch({
 });
 unsubscribe();
 store.dispatch({
-  type: 'REMOVE_ARTICLE',
+  type: actions.REMOVE_ARTICLE,
   payload: {
     id: 1
   }
