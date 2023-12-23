@@ -3,8 +3,8 @@
 // require('../update-object');
 // require('../immutable');
 // require('../functional/immer');
-// require('./dispatch');
-require('./customerDispatch');
+require('./dispatch');
+// require('./customerDispatch');
 
 function component() {
   const element = document.createElement('div');
