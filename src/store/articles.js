@@ -1,10 +1,34 @@
-import * as actions from './action-types';
+// Action types
+const ADD_ARTICLE = 'add_article';
+const REMOVE_ARTICLE = 'remove_article';
+const PUBLISH_ARTICLE = 'publish_article';
 
+// Action creators
+export const addArticle = (payload) => ({
+  type: ADD_ARTICLE,
+  payload
+});
+
+export const removeArticle = (id) => ({
+  type: REMOVE_ARTICLE,
+  payload: {
+    id
+  }
+});
+
+export const publishArticle = (id) => ({
+  type: PUBLISH_ARTICLE,
+  payload: {
+    id
+  }
+});
+
+//   Reducers
 let lastId = 0;
 
 export default function reducer(state = [], action) {
   switch (action.type) {
-    case actions.ADD_ARTICLE:
+    case ADD_ARTICLE:
       return [
         ...state,
         {
@@ -15,9 +39,9 @@ export default function reducer(state = [], action) {
           isPublished: false
         }
       ];
-    case actions.REMOVE_ARTICLE:
+    case REMOVE_ARTICLE:
       return state.filter((article) => article.id !== action.payload.id);
-    case actions.PUBLISH_ARTICLE:
+    case PUBLISH_ARTICLE:
       return state.map((article) =>
         article.id === action.payload.id
           ? { ...article, isPublished: true }

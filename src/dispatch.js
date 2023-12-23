@@ -1,5 +1,6 @@
-import { addArticle, publishArticle } from './actions';
-import store from './store';
+import { addArticle, publishArticle } from './store/articles';
+import configureStore from './store/configureStore';
+const store = configureStore();
 
 const unsubscribe = store.subscribe(() =>
   console.log('Store changed!', store.getState())
