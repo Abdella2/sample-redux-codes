@@ -1,5 +1,5 @@
 {
-  "name": "react_app",
+  "name": "redux_app",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -16,6 +16,7 @@
     "webpack-dev-server": "4.15.1"
   },
   "dependencies": {
+    "@redux-devtools/extension": "^3.3.0",
     "immer": "^10.0.3",
     "immutable": "^5.0.0-beta.4",
     "lodash": "^4.17.21",
