@@ -1,16 +1,13 @@
-import { createAction, createReducer } from '@reduxjs/toolkit';
-
-// Action creators
-export const addArticle = createAction('add_article');
-export const removeArticle = createAction('remove_article');
-export const publishArticle = createAction('publish_article');
+import { createSlice } from '@reduxjs/toolkit';
 
 //   Reducers
 let lastId = 0;
 
-export default createReducer([], (builder) => {
-  builder
-    .addCase(addArticle.type, (articles, action) => {
+const slice = createSlice({
+  name: 'articles',
+  initialState: [],
+  reducers: {
+    addArticle: (articles, action) => {
       articles.push({
         id: ++lastId,
         title: action.payload.title,
@@ -18,17 +15,21 @@ export default createReducer([], (builder) => {
         status: 'submitted',
         isPublished: false
       });
-    })
-    .addCase(removeArticle.type, (articles, action) => {
+    },
+    removeArticle: (articles, action) => {
       const index = articles.indexOf(
         (article) => article.id === action.payload.id
       );
       articles.splice(index, 1);
-    })
-    .addCase(publishArticle.type, (articles, action) => {
+    },
+    publishArticle: (articles, action) => {
       const index = articles.findIndex(
         (article) => article.id == action.payload.id
       );
       articles[index].isPublished = true;
-    });
+    }
+  }
 });
+
+export const { addArticle, removeArticle, publishArticle } = slice.actions;
+export default slice.reducer;
