@@ -1,5 +1,6 @@
 import { addArticle, publishArticle } from './store/articles';
 import configureStore from './store/configureStore';
+import * as actions from './store/publications';
 const store = configureStore();
 
 const unsubscribe = store.subscribe(() =>
@@ -17,6 +18,20 @@ store.dispatch(
   addArticle({
     title: 'Artificial intelligent',
     authors: ['John', 'Sara']
+  })
+);
+
+store.dispatch(
+  actions.addPublication({
+    volume: 1,
+    publication_no: 2
+  })
+);
+
+store.dispatch(
+  actions.addPublication({
+    volume: 1,
+    publication_no: 2
   })
 );
 

@@ -3,7 +3,7 @@
 // require('../update-object');
 // require('../immutable');
 // require('../functional/immer');
-require('./publication-dispatch');
+// require('./publication-dispatch');
 require('./dispatch');
 // require('./customerDispatch');
 
