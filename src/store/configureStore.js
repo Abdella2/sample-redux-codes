@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import reducer from './articles';
+import reducer from './publications';
 
 export default function () {
   return configureStore({ reducer });

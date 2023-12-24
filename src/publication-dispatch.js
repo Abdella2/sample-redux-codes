@@ -1,5 +1,6 @@
-import actions from './actions';
-import store from './store';
+import configureStore from './store/configureStore';
+import * as actions from './store/publications';
+const store = configureStore();
 
 store.dispatch(
   actions.addPublication({
