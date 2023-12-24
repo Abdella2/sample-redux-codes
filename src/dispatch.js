@@ -1,4 +1,8 @@
-import { addArticle, publishArticle } from './store/articles';
+import {
+  addArticle,
+  getUnpublishedArticle,
+  publishArticle
+} from './store/articles';
 import configureStore from './store/configureStore';
 import * as actions from './store/publications';
 const store = configureStore();
@@ -40,5 +44,6 @@ store.dispatch(publishArticle({ id: 1 }));
 unsubscribe();
 
 // store.dispatch(removeArticle(1));
+const unpublishedArticle = getUnpublishedArticle(store.getState());
 
-console.log(store.getState());
+console.log(unpublishedArticle);

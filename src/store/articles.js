@@ -33,3 +33,6 @@ const slice = createSlice({
 
 export const { addArticle, removeArticle, publishArticle } = slice.actions;
 export default slice.reducer;
+
+export const getUnpublishedArticle = (state) =>
+  state.entities.articles.filter((article) => !article.isPublished);
