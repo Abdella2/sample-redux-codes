@@ -47,3 +47,7 @@ unsubscribe();
 const unpublishedArticle = getUnpublishedArticle(store.getState());
 
 console.log(unpublishedArticle);
+
+const article1 = getUnpublishedArticle(store.getState());
+const article2 = getUnpublishedArticle(store.getState());
+console.log(article1 === article2);

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { createSelector } from 'reselect';
 
 //   Reducers
 let lastId = 0;
@@ -34,5 +35,8 @@ const slice = createSlice({
 export const { addArticle, removeArticle, publishArticle } = slice.actions;
 export default slice.reducer;
 
-export const getUnpublishedArticle = (state) =>
-  state.entities.articles.filter((article) => !article.isPublished);
+export const getUnpublishedArticle = createSelector(
+  (state) => state.entities.articles,
+  (state) => state.entities.publications,
+  (articles, publications) => articles.filter((article) => !article.isPublished)
+);
