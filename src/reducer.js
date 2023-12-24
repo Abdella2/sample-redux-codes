@@ -1,7 +1,10 @@
+import * as actions from './action-types';
+// Action types
+// Reducer
 let lastId = 0;
 export default function reducer(state = [], action) {
   switch (action.type) {
-    case 'add_publication':
+    case actions.ADD_PUBLICATION:
       return [
         ...state,
         {
@@ -10,7 +13,7 @@ export default function reducer(state = [], action) {
           publication_no: action.payload.publication_no
         }
       ];
-    case 'remove_publication':
+    case actions.REMOVE_PUBLICATION:
       return state.filter((pub) => pub.id !== action.payload.id);
     default:
       break;
