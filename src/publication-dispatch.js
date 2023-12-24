@@ -1,25 +1,18 @@
-import * as actions from './action-types';
+import actions from './actions';
 import store from './store';
 
-store.dispatch({
-  type: actions.ADD_PUBLICATION,
-  payload: {
+store.dispatch(
+  actions.addPublication({
     volume: 1,
     publication_no: 2
-  }
-});
+  })
+);
 
-store.dispatch({
-  type: actions.ADD_PUBLICATION,
-  payload: {
+store.dispatch(
+  actions.addPublication({
     volume: 1,
     publication_no: 2
-  }
-});
+  })
+);
 
-store.dispatch({
-  type: actions.REMOVE_PUBLICATION,
-  payload: {
-    id: 1
-  }
-});
+store.dispatch(actions.removePublication(1));
