@@ -1,30 +1,14 @@
-// Action types
-export const ADD_PUBLICATION = 'add_publication';
-export const REMOVE_PUBLICATION = 'remove_publication';
+import { createAction } from '@reduxjs/toolkit';
 
 // Actions
-export function addPublication(payload) {
-  return {
-    type: ADD_PUBLICATION,
-    payload: payload
-  };
-}
-
-// Actions
-export function removePublication(id) {
-  return {
-    type: REMOVE_PUBLICATION,
-    payload: {
-      id
-    }
-  };
-}
+export const addPublication = createAction('add_publication');
+export const removePublication = createAction('remove_publication');
 
 // Reducer
 let lastId = 0;
 export default function reducer(state = [], action) {
   switch (action.type) {
-    case ADD_PUBLICATION:
+    case addPublication.type:
       return [
         ...state,
         {
@@ -33,7 +17,7 @@ export default function reducer(state = [], action) {
           publication_no: action.payload.publication_no
         }
       ];
-    case REMOVE_PUBLICATION:
+    case removePublication.type:
       return state.filter((pub) => pub.id !== action.payload.id);
     default:
       break;

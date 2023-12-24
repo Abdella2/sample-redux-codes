@@ -16,4 +16,4 @@ store.dispatch(
   })
 );
 
-store.dispatch(actions.removePublication(1));
+store.dispatch(actions.removePublication({ id: 1 }));
