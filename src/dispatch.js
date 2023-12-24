@@ -20,7 +20,7 @@ store.dispatch(
   })
 );
 
-store.dispatch(publishArticle(1));
+store.dispatch(publishArticle({ id: 1 }));
 
 unsubscribe();
 
