@@ -1,24 +1,27 @@
-import { createAction, createReducer } from '@reduxjs/toolkit';
-
-// Actions
-export const addPublication = createAction('add_publication');
-export const removePublication = createAction('remove_publication');
+import { createSlice } from '@reduxjs/toolkit';
 
 // Reducer
 let lastId = 0;
-export default createReducer([], (builder) =>
-  builder
-    .addCase(addPublication.type, (publications, action) => {
+
+const slice = createSlice({
+  name: 'publication',
+  initialState: [],
+  reducers: {
+    addPublication: (publications, action) => {
       publications.push({
         id: ++lastId,
         volume: action.payload.volume,
         publication_no: action.payload.publication_no
       });
-    })
-    .addCase(removePublication.type, (publications, action) => {
+    },
+    removePublication: (publications, action) => {
       const index = publications.findIndex(
         (pub) => pub.id === action.payload.id
       );
       publications.splice(index, 1);
-    })
-);
+    }
+  }
+});
+
+export const { addPublication, removePublication } = slice.actions;
+export default slice.reducer;
