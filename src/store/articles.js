@@ -28,11 +28,21 @@ const slice = createSlice({
         (article) => article.id == action.payload.id
       );
       articles[index].isPublished = true;
+    },
+    assignArticleToReviewer: (articles, action) => {
+      const { articleId, reviewerId } = action.payload;
+      const index = articles.findIndex((article) => article.id === articleId);
+      articles[index].reviewerId = reviewerId;
     }
   }
 });
 
-export const { addArticle, removeArticle, publishArticle } = slice.actions;
+export const {
+  addArticle,
+  removeArticle,
+  publishArticle,
+  assignArticleToReviewer
+} = slice.actions;
 export default slice.reducer;
 
 export const getUnpublishedArticle = createSelector(

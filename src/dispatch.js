@@ -1,5 +1,6 @@
 import {
   addArticle,
+  assignArticleToReviewer,
   getUnpublishedArticle,
   publishArticle
 } from './store/articles';
@@ -26,6 +27,19 @@ store.dispatch(
   addArticle({
     title: 'Artificial intelligent',
     authors: ['John', 'Sara']
+  })
+);
+
+store.dispatch(
+  assignArticleToReviewer({
+    articleId: 1,
+    reviewerId: 1
+  })
+);
+store.dispatch(
+  assignArticleToReviewer({
+    articleId: 2,
+    reviewerId: 2
   })
 );
 
