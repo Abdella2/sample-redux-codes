@@ -7,7 +7,10 @@ const unsubscribe = store.subscribe(() =>
 );
 
 store.dispatch(addReviewer({ name: 'John Doe' }));
-store.dispatch(() => {});
+store.dispatch((dispatch, getState) => {
+  dispatch(addReviewer({ name: 'John from middleware' }));
+  console.log(getState());
+});
 // store.dispatch(addReviewer({ name: 'Sara Doe' }));
 
 // store.dispatch(
