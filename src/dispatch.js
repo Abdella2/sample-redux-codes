@@ -7,6 +7,7 @@ const unsubscribe = store.subscribe(() =>
 );
 
 store.dispatch(addReviewer({ name: 'John Doe' }));
+store.dispatch(() => {});
 // store.dispatch(addReviewer({ name: 'Sara Doe' }));
 
 // store.dispatch(
