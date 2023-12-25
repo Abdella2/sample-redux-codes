@@ -5,11 +5,15 @@ import {
 } from './store/articles';
 import configureStore from './store/configureStore';
 import * as actions from './store/publications';
+import { addReviewer } from './store/reviewer';
 const store = configureStore();
 
 const unsubscribe = store.subscribe(() =>
   console.log('Store changed!', store.getState())
 );
+
+store.dispatch(addReviewer({ name: 'John Doe' }));
+store.dispatch(addReviewer({ name: 'Sara Doe' }));
 
 store.dispatch(
   addArticle({
