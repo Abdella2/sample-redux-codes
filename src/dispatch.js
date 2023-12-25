@@ -11,6 +11,7 @@ store.dispatch((dispatch, getState) => {
   dispatch(addReviewer({ name: 'John from middleware' }));
   console.log(getState());
 });
+store.dispatch({ type: 'error', payload: { message: 'An error occurred' } });
 // store.dispatch(addReviewer({ name: 'Sara Doe' }));
 
 // store.dispatch(
