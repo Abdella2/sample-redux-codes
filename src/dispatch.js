@@ -71,5 +71,5 @@ const article1 = getUnpublishedArticle(store.getState());
 const article2 = getUnpublishedArticle(store.getState());
 console.log(article1 === article2);
 
-const articles = getArticleByReviewer(store.getState(), 1);
+const articles = getArticleByReviewer(1)(store.getState());
 console.log(articles);

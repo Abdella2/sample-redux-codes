@@ -51,7 +51,9 @@ export const getUnpublishedArticle = createSelector(
   (articles, publications) => articles.filter((article) => !article.isPublished)
 );
 
-export const getArticleByReviewer = (state, reviewerId) =>
-  state.entities.articles.filter(
-    (article) => article.reviewerId === reviewerId
+export const getArticleByReviewer = (reviewerId) =>
+  createSelector(
+    (state) => state.entities.articles,
+    (articles) =>
+      articles.filter((article) => article.reviewerId === reviewerId)
   );
