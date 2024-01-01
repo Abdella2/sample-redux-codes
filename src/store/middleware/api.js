@@ -7,13 +7,15 @@ const api =
   async (action) => {
     if (action.type !== actions.apiCallBegin.type) return next(action);
 
-    next(action);
+    const { url, method, data, onSuccess, onError, onStart } = action.payload;
 
-    const { url, method, data, onSuccess, onError } = action.payload;
+    if (onStart) dispatch({ type: onStart });
+
+    next(action);
 
     try {
       const result = await axios({
-        baseURL: 'http://localhost:9001/api',
+        baseURL: 'http://localhost:9002/api',
         url,
         method,
         data
@@ -25,9 +27,9 @@ const api =
       if (onSuccess) dispatch({ type: onSuccess, payload: result.data });
     } catch (err) {
       // General
-      dispatch(actions.apiCallFail(err));
+      dispatch(actions.apiCallFail(err.message));
       // Specific
-      dispatch({ type: onError, payload: err });
+      if (onError) dispatch({ type: onError, payload: err.message });
     }
   };
 
