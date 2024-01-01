@@ -1,3 +1,4 @@
+import * as actions from './store/api';
 import configureStore from './store/configureStore';
 const store = configureStore();
 
@@ -70,11 +71,10 @@ const store = configureStore();
 // const articles = getArticleByReviewer(1)(store.getState());
 // console.log(articles);
 
-store.dispatch({
-  type: 'apiCallBegin',
-  payload: {
+store.dispatch(
+  actions.apiCallBegin({
     url: '/bugs',
-    onSuccess: 'GET_BUGS_SUCCESS',
-    onError: 'API_REQUEST_FAIL'
-  }
-});
+    onSuccess: actions.apiCallSuccess.type,
+    onError: actions.apiCallFail.type
+  })
+);
