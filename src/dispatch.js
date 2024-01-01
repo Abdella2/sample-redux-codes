@@ -1,4 +1,4 @@
-import * as actions from './store/api';
+import { loadBugs } from './store/bugs';
 import configureStore from './store/configureStore';
 const store = configureStore();
 
@@ -71,10 +71,4 @@ const store = configureStore();
 // const articles = getArticleByReviewer(1)(store.getState());
 // console.log(articles);
 
-store.dispatch(
-  actions.apiCallBegin({
-    url: '/bugs',
-    onSuccess: 'GET_BUGS_SUCCESS',
-    onError: actions.apiCallFail.type
-  })
-);
+store.dispatch(loadBugs());
