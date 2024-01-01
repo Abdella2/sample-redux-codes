@@ -1,17 +1,16 @@
 import configureStore from './store/configureStore';
-import { addReviewer } from './store/reviewer';
 const store = configureStore();
 
-const unsubscribe = store.subscribe(() =>
-  console.log('Store changed!', store.getState())
-);
+// const unsubscribe = store.subscribe(() =>
+//   console.log('Store changed!', store.getState())
+// );
 
-store.dispatch(addReviewer({ name: 'John Doe' }));
-store.dispatch((dispatch, getState) => {
-  dispatch(addReviewer({ name: 'John from middleware' }));
-  console.log(getState());
-});
-store.dispatch({ type: 'error', payload: { message: 'An error occurred' } });
+// store.dispatch(addReviewer({ name: 'John Doe' }));
+// store.dispatch((dispatch, getState) => {
+//   dispatch(addReviewer({ name: 'John from middleware' }));
+//   console.log(getState());
+// });
+// store.dispatch({ type: 'error', payload: { message: 'An error occurred' } });
 // store.dispatch(addReviewer({ name: 'Sara Doe' }));
 
 // store.dispatch(
@@ -70,3 +69,12 @@ store.dispatch({ type: 'error', payload: { message: 'An error occurred' } });
 
 // const articles = getArticleByReviewer(1)(store.getState());
 // console.log(articles);
+
+store.dispatch({
+  type: 'apiCallBegin',
+  payload: {
+    url: '/bugs',
+    onSuccess: 'GET_BUGS_SUCCESS',
+    onError: 'API_REQUEST_FAIL'
+  }
+});
