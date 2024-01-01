@@ -74,7 +74,7 @@ const store = configureStore();
 store.dispatch(
   actions.apiCallBegin({
     url: '/bugs',
-    onSuccess: actions.apiCallSuccess.type,
+    onSuccess: 'GET_BUGS_SUCCESS',
     onError: actions.apiCallFail.type
   })
 );

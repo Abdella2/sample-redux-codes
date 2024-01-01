@@ -6,10 +6,14 @@ let lastId = 0;
 
 const slice = createSlice({
   name: 'articles',
-  initialState: [],
+  initialState: {
+    list: [],
+    loading: false,
+    lastFetch: null
+  },
   reducers: {
     addArticle: (articles, action) => {
-      articles.push({
+      articles.list.push({
         id: ++lastId,
         title: action.payload.title,
         authors: action.payload.authors,
@@ -18,20 +22,22 @@ const slice = createSlice({
       });
     },
     removeArticle: (articles, action) => {
-      const index = articles.indexOf(
+      const index = articles.list.indexOf(
         (article) => article.id === action.payload.id
       );
       articles.splice(index, 1);
     },
     publishArticle: (articles, action) => {
-      const index = articles.findIndex(
+      const index = articles.list.findIndex(
         (article) => article.id == action.payload.id
       );
       articles[index].isPublished = true;
     },
     assignArticleToReviewer: (articles, action) => {
       const { articleId, reviewerId } = action.payload;
-      const index = articles.findIndex((article) => article.id === articleId);
+      const index = articles.list.findIndex(
+        (article) => article.id === articleId
+      );
       articles[index].reviewerId = reviewerId;
     }
   }
