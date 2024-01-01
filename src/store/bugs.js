@@ -20,12 +20,19 @@ const slice = createSlice({
       bugs.list = action.payload;
       bugs.loading = false;
       bugs.lastFetch = Date.now();
+    },
+    POST_BUG_SUCCESS: (bugs, action) => {
+      bugs.list.push(action.payload);
     }
   }
 });
 
-export const { GET_BUGS_SUCCESS, GET_BUG_REQUESTED, GET_BUG_REQUEST_FAILED } =
-  slice.actions;
+export const {
+  GET_BUGS_SUCCESS,
+  GET_BUG_REQUESTED,
+  GET_BUG_REQUEST_FAILED,
+  POST_BUG_SUCCESS
+} = slice.actions;
 
 export default slice.reducer;
 
@@ -45,10 +52,11 @@ export const loadBugs = () => (dispatch, getState) => {
     })
   );
 };
-// export const loadBugs = () =>
-//   apiCallBegin({
-//     url,
-//     onStart: GET_BUG_REQUESTED.type,
-//     onSuccess: GET_BUGS_SUCCESS.type,
-//     onError: GET_BUG_REQUEST_FAILED.type
-//   });
+
+export const addBug = (bug) =>
+  apiCallBegin({
+    url,
+    method: 'post',
+    data: bug,
+    onSuccess: POST_BUG_SUCCESS.type
+  });

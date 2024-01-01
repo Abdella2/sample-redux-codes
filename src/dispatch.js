@@ -1,4 +1,4 @@
-import { loadBugs } from './store/bugs';
+import { addBug } from './store/bugs';
 import configureStore from './store/configureStore';
 const store = configureStore();
 
@@ -71,6 +71,4 @@ const store = configureStore();
 // const articles = getArticleByReviewer(1)(store.getState());
 // console.log(articles);
 
-store.dispatch(loadBugs());
-
-setTimeout(() => store.dispatch(loadBugs()), 2000);
+store.dispatch(addBug({ description: 'a' }));
