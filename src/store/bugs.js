@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import moment from 'moment';
 import { apiCallBegin } from './api';
 
 const slice = createSlice({
@@ -18,6 +19,7 @@ const slice = createSlice({
     GET_BUGS_SUCCESS: (bugs, action) => {
       bugs.list = action.payload;
       bugs.loading = false;
+      bugs.lastFetch = Date.now();
     }
   }
 });
@@ -28,10 +30,25 @@ export const { GET_BUGS_SUCCESS, GET_BUG_REQUESTED, GET_BUG_REQUEST_FAILED } =
 export default slice.reducer;
 
 const url = '/bugs';
-export const loadBugs = () =>
-  apiCallBegin({
-    url,
-    onStart: GET_BUG_REQUESTED.type,
-    onSuccess: GET_BUGS_SUCCESS.type,
-    onError: GET_BUG_REQUEST_FAILED.type
-  });
+export const loadBugs = () => (dispatch, getState) => {
+  const { lastFetch } = getState().entities.bugs;
+
+  const diffInMinutes = moment().diff(moment(lastFetch), 'minutes');
+  if (diffInMinutes < 10) return;
+
+  dispatch(
+    apiCallBegin({
+      url,
+      onStart: GET_BUG_REQUESTED.type,
+      onSuccess: GET_BUGS_SUCCESS.type,
+      onError: GET_BUG_REQUEST_FAILED.type
+    })
+  );
+};
+// export const loadBugs = () =>
+//   apiCallBegin({
+//     url,
+//     onStart: GET_BUG_REQUESTED.type,
+//     onSuccess: GET_BUGS_SUCCESS.type,
+//     onError: GET_BUG_REQUEST_FAILED.type
+//   });

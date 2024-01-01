@@ -72,3 +72,5 @@ const store = configureStore();
 // console.log(articles);
 
 store.dispatch(loadBugs());
+
+setTimeout(() => store.dispatch(loadBugs()), 2000);
